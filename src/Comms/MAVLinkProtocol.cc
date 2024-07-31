@@ -383,6 +383,11 @@ void MAVLinkProtocol::receiveBytes(LinkInterface* link, QByteArray b)
             memset(&_status,  0, sizeof(_status));
             memset(&_message, 0, sizeof(_message));
         }
+
+        mavlink_status_t* mavlinkStatus = mavlink_get_channel_status(mavlinkChannel);
+        if (mavlinkStatus->signing) {
+            link->setSigningSignatureFailure(mavlinkStatus->signing->last_status == MAVLINK_SIGNING_STATUS_BAD_SIGNATURE);
+        }
     }
 }
 

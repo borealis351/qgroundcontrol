@@ -94,7 +94,7 @@ ParameterManager::ParameterManager(Vehicle* vehicle)
     _mavlink = qgcApp()->toolbox()->mavlinkProtocol();
 
     _initialRequestTimeoutTimer.setSingleShot(true);
-    _initialRequestTimeoutTimer.setInterval(5000);
+    _initialRequestTimeoutTimer.setInterval(qgcApp()->runningUnitTests() ? 500 : 5000);
     connect(&_initialRequestTimeoutTimer, &QTimer::timeout, this, &ParameterManager::_initialRequestTimeout);
 
     _waitingParamTimeoutTimer.setSingleShot(true);

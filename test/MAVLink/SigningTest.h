@@ -22,4 +22,5 @@ private slots:
     void _testInitSigning();
     void _testCheckSigningLinkId();
     void _testCreateSetupSigning();
+    void _denyUnsignedMessages();
 };
